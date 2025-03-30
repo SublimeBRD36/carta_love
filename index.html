@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta Romántica</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #fdeff2;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .petalos {
+            position: absolute;
+            top: -80px;
+            width: 90px; /* Ajustado para la nueva imagen */
+            height: 90px; /* Ajustado para la nueva imagen */
+            background: url('https://i.imgur.com/r0N4Ogh.png') no-repeat center;
+            background-size: contain;
+            opacity: 0;
+            animation: caer 5s linear infinite;
+        }
+        @keyframes caer {
+            0% {
+                transform: translateY(0) rotate(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .carta-container {
+            position: relative;
+            width: 600px;
+            height: 300px;
+            cursor: pointer;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sobre {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.8s;
+            flex-direction: column;
+            font-family: 'Dancing Script', cursive;
+            font-size: 24px;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .icono {
+            margin-top: 10px;
+            font-size: 30px;
+        }
+        .carta {
+            position: absolute;
+            width: 550px;
+            height: 250px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transform: translateY(20px);
+            transition: transform 0.8s, opacity 0.5s;
+            opacity: 0;
+            font-family: 'Dancing Script', cursive;
+            text-align: left;
+            padding: 20px;
+            color: black;
+            backdrop-filter: blur(4px);
+        }
+        .carta img {
+            width: 150px;
+            height: auto;
+            border-radius: 10px;
+            margin-right: 15px;
+        }
+        .carta-container.abierta .sobre {
+            transform: rotateX(-90deg);
+        }
+        .carta-container.abierta .carta {
+            transform: translateY(-40px);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function crearPetalo() {
+            const petalo = document.createElement("div");
+            petalo.classList.add("petalos");
+            petalo.style.left = Math.random() * 100 + "vw";
+            petalo.style.animationDuration = Math.random() * 2 + 3 + "s";
+            document.body.appendChild(petalo);
+            setTimeout(() => petalo.remove(), 5000);
+        }
+        setInterval(crearPetalo, 600);
+    </script>
+    <div class="carta-container" onclick="abrirCarta(this)">
+        <div class="sobre">💌 Tengo un mensaje para ti...<br><span class="icono">⬇️</span></div>
+        <div class="carta">
+            <img src="imagen.jpg" alt="Descripción de la imagen">
+            <p>❤️ Eres la razón de mi sonrisa, mi amor y felicidad. Pero cada día te extraño mucho más. 😢💖<br><br>
+            Eres muy importante para mi vida y cada día que me levanto le pido a Dios que podamos salir adelante. 🙏💕<br><br>
+            Siento miedo de  perderte te quiero mucho amor ❤️🥺</p>
+        </div>
+    </div>
+    <script>
+        function abrirCarta(elemento) {
+            elemento.classList.toggle("abierta");
+        }
+    </script>
+</body>
+</html>
